@@ -74,6 +74,7 @@ class ApplicationIconWidget extends StatelessWidget {
                     Text(
                       name ?? "Nome não encontrado",
                       textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyText1,
                     )
                   ],
                 ),

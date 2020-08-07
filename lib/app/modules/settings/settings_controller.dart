@@ -22,10 +22,6 @@ abstract class _SettingsControllerBase with Store {
     _themesController.changeTheme();
   }
 
-  @action
-  void openProjects() {
-    _homeController.openProjects();
-  }
 
   @action
   void openAbout() {

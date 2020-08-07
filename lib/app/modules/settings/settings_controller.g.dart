@@ -32,17 +32,6 @@ mixin _$SettingsController on _SettingsControllerBase, Store {
   }
 
   @override
-  void openProjects() {
-    final _$actionInfo = _$_SettingsControllerBaseActionController.startAction(
-        name: '_SettingsControllerBase.openProjects');
-    try {
-      return super.openProjects();
-    } finally {
-      _$_SettingsControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void openAbout() {
     final _$actionInfo = _$_SettingsControllerBaseActionController.startAction(
         name: '_SettingsControllerBase.openAbout');

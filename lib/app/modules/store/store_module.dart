@@ -1,9 +1,11 @@
+import 'package:flutter/src/widgets/framework.dart';
+
 import 'store_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/dio.dart';
 import 'store_page.dart';
 
-class StoreModule extends ChildModule {
+class StoreModule extends WidgetModule {
   @override
   List<Bind> get binds => [
         Bind((i) => StoreController()),
@@ -15,4 +17,8 @@ class StoreModule extends ChildModule {
       ];
 
   static Inject get to => Inject<StoreModule>.of();
+
+  @override
+  // TODO: implement view
+  Widget get view =>  StorePage();
 }

@@ -39,9 +39,9 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
 
   @override
   Widget build(BuildContext context) {
-    return  LayoutCustomWidget(
+    return LayoutCustomWidget(
       appBar: AppBar(),
-      body:DraggableScrollbar.semicircle(
+      body: DraggableScrollbar.semicircle(
         controller: _scrollController,
         child: ListView(
           controller: _scrollController,
@@ -53,14 +53,14 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                 decoration: ResponsiveWidget.isPequenoScreen(context)
                     ? null
                     : BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 3.0,
-                    ),
-                  ],
-                ),
+                        color: Theme.of(context).backgroundColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 3.0,
+                          ),
+                        ],
+                      ),
                 child: Row(
                   children: [
                     Observer(
@@ -82,6 +82,50 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                                       image: state.extendedImageInfo?.image,
                                     );
                                     break;
+                                  default:
+                                    return Image.asset(Assets.icon);
+                                    break;
+                                }
+                              },
+                            ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Observer(
+                      builder: (_) => Text(
+                        controller.name ?? "",
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            Observer(
+              builder: (_) => controller.screenshotUrls == null ||
+                      controller.screenshotUrls.length == 0
+                  ? Container()
+                  : CarouselSlider.builder(
+                      itemCount: controller.screenshotUrls.length,
+                      options: CarouselOptions(
+                        autoPlay: false,
+                        enlargeCenterPage: true,
+                        viewportFraction: 0.9,
+                        aspectRatio: 2.0,
+                        initialPage: 2,
+                      ),
+                      itemBuilder: (BuildContext context, int itemIndex) =>
+                          ExtendedImage.network(
+                        controller.screenshotUrls[itemIndex],
+                        cache: true,
+                        loadStateChanged: (ExtendedImageState state) {
+                          switch (state.extendedImageLoadState) {
+                            case LoadState.completed:
+                              return ExtendedRawImage(
+                                image: state.extendedImageInfo?.image,
+                              );
+                              break;
                             default:
                               return Image.asset(Assets.icon);
                               break;
@@ -89,48 +133,6 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                         },
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Observer(
-                      builder: (_) => Text(controller.name ?? "",style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30
-                      ),),
-                    )
-                  ],
-                ),
-              ),
-            ),
-
-            Observer(
-              builder: (_) =>controller.screenshotUrls==null || controller.screenshotUrls.length ==0?Container(): CarouselSlider.builder(
-                itemCount: controller.screenshotUrls.length,
-                options: CarouselOptions(
-                  autoPlay: false,
-                  enlargeCenterPage: true,
-                  viewportFraction: 0.9,
-                  aspectRatio: 2.0,
-                  initialPage: 2,
-                ),
-                itemBuilder: (BuildContext context, int itemIndex) =>
-                    ExtendedImage.network(
-                      controller.screenshotUrls[itemIndex],
-                      cache: true,
-                      loadStateChanged: (ExtendedImageState state) {
-                        switch (state.extendedImageLoadState) {
-                          case LoadState.completed:
-                            return ExtendedRawImage(
-                              image: state.extendedImageInfo?.image,
-                            );
-                            break;
-                          default:
-                            return Image.asset(Assets.icon);
-                            break;
-                        }
-                      },
-                    ),
-              ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
@@ -139,15 +141,20 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                 decoration: ResponsiveWidget.isPequenoScreen(context)
                     ? null
                     : BoxDecoration(
-                  color: Theme.of(context).backgroundColor,
-                  borderRadius: BorderRadius.circular(5),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 1.0,
-                    ),
-                  ],
+                        color: Theme.of(context).backgroundColor,
+                        borderRadius: BorderRadius.circular(5),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 1.0,
+                          ),
+                        ],
+                      ),
+                child: Observer(
+                  builder: (_) => Text(
+                    controller.description ?? "",
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
                 ),
-                child: Observer(builder: (_) => Text(controller.description ?? "")),
               ),
             ),
           ],

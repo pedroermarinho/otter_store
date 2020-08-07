@@ -33,49 +33,54 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
               Container(
                 constraints: BoxConstraints(maxWidth: 500),
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(2),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 1.0,
-                    ),
-                  ],
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(2),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 1.0,
+                  ),
+                ],
+              ),
+              child: TextField(
+                textAlign: TextAlign.center,
+                onChanged: controller.searchApp,
+                onSubmitted: controller.searchApp,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
                 ),
-                child:TextField(
-                      textAlign: TextAlign.center,
-                      onChanged: controller.searchApp,
-                      onSubmitted:controller.searchApp,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                      ),
-                    ),
               ),
-              SizedBox(
-                height: 5,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Observer(
+              builder: (_) => Text(
+                "${controller.apps.length}",
+                style: Theme.of(context).textTheme.bodyText1,
               ),
-              Observer(builder: (_)=>Text("${controller.apps.length}")),
-              SizedBox(
-                height: 5,
-              ),
-              Expanded(
-                child: Observer(
-                  builder: (_) => DraggableScrollbar.semicircle(
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Expanded(
+              child: Observer(
+                builder: (_) => DraggableScrollbar.semicircle(
+                  controller: _scrollController,
+                  child: GridView.builder(
                     controller: _scrollController,
-                    child: GridView.builder(
-                      controller: _scrollController,
-                      itemCount: controller.apps.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            ResponsiveWidget.isPequenoScreen(context) ? 2 : 4,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return controller.apps[index];
-                      },
+                    itemCount: controller.apps.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount:
+                          ResponsiveWidget.isPequenoScreen(context) ? 2 : 4,
                     ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return controller.apps[index];
+                    },
                   ),
                 ),
               ),
-            ],
+            ),
+          ],
           ),
         ),
 

@@ -21,7 +21,6 @@ class _SettingsPageState
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150,
       height: 40,
       decoration: BoxDecoration(
           color: Colors.black54, borderRadius: BorderRadius.circular(30)),
@@ -39,13 +38,13 @@ class _SettingsPageState
               onPressed: controller.changeTheme,
             ),
           ),
-          IconButton(
-            icon: Icon(
-              FontAwesomeIcons.github,
-              color: Colors.white,
-            ),
-            onPressed: controller.openProjects,
-          ),
+//          IconButton(
+//            icon: Icon(
+//              FontAwesomeIcons.github,
+//              color: Colors.white,
+//            ),
+//            onPressed: controller.openProjects,
+//          ),
           IconButton(
             icon: Icon(
               FontAwesomeIcons.infoCircle,
