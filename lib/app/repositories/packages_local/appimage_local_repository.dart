@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:otter_store/app/models/appimage_model.dart';
 import 'package:otter_store/app/repositories/appimage_api/appimage_api_repository.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'interfaces/packages_local_interface.dart';
 
 class AppimageLocalRepository implements IPackagesLocal {
@@ -39,8 +39,10 @@ class AppimageLocalRepository implements IPackagesLocal {
     Hive.registerAdapter(AppImageModelAdapter());
     Hive.registerAdapter(AuthorsAdapter());
     Hive.registerAdapter(LinksAdapter());
-    var docs = await getApplicationDocumentsDirectory();
-    Hive.init(docs.path);
+    if(!kIsWeb){
+      var docs = await getApplicationDocumentsDirectory();
+      Hive.init(docs.path);
+    }
     _appImageApiBox = await Hive.openBox(_nameBox);
   }
 

@@ -1,3 +1,10 @@
+import 'repositories/flatpak_details_api/flatpak_details_api_repository.dart';
+import 'repositories/flatpak_details_api/interfaces/flatpak_details_api_repository_interface.dart';
+import 'repositories/packages_local/flatpak_details_local_repository.dart';
+import 'repositories/flatpak_api/flatpak_api_repository.dart';
+import 'repositories/flatpak_api/interfaces/flatpak_api_repository_interface.dart';
+
+import 'repositories/packages_local/flatpak_local_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -26,13 +33,17 @@ import 'repositories/snap_api/snap_api_repository.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        Bind<IFlatpakDetailsApiRepository>(
+            (i) => FlatpakDetailsApiRepository(Dio())),
+        Bind((i) => FlatpakApiRepository(Dio())),
         Bind((i) => AppimageApiRepository(Dio())),
         Bind((i) => ApplicationIconController()),
         Bind((i) => AppInfoController()),
         Bind((i) => SnapApiRepository(Dio())),
+    Bind((i) => FlatpakDetailsLocalRepository(), lazy: false),
+        Bind((i) => FlatpakLocalRepository(), lazy: false),
         Bind((i) => SnapLocalRepository(), lazy: false),
         Bind((i) => AppimageLocalRepository(), lazy: false),
-
         Bind((i) => ProjectComponentController()),
         Bind((i) => SplashScreenController()),
         Bind((i) => AboutController()),
