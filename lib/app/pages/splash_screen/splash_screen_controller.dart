@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
+import 'package:otter_store/app/repositories/packages_local/appimage_local_repository.dart';
 import 'package:otter_store/app/repositories/packages_local/snap_local_repository.dart';
 
 part 'splash_screen_controller.g.dart';
@@ -9,7 +10,7 @@ class SplashScreenController = _SplashScreenControllerBase
 
 abstract class _SplashScreenControllerBase with Store {
   final _snapLocalController = Modular.get<SnapLocalRepository>();
-
+  final _appImageLocalController = Modular.get<AppimageLocalRepository>();
   @observable
   bool load = false;
 
@@ -19,10 +20,16 @@ abstract class _SplashScreenControllerBase with Store {
       load = true;
       await _snapLocalController.recovery();
       load = true;
-      pushHome();
-    } else {
-      pushHome();
+
     }
+
+    if (_appImageLocalController.length() == 0) {
+      load = true;
+      await _appImageLocalController.recovery();
+      load = true;
+    }
+
+    pushHome();
   }
 
   pushHome() {

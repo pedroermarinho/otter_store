@@ -49,7 +49,6 @@ abstract class _ProjetcsControllerBase with Store {
   }
 
   getGithubRepos() async {
-    print("inint -> getGithubRepos");
     _githubRepositoryController.getGitHubRepos().then(
       (value) {
         if (value != null && value.data != null) {

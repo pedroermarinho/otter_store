@@ -35,13 +35,13 @@ class SnapLocalRepository implements IPackagesLocal {
   @override
   Future<void> toSave(Map data) async {
     final SnapModel snap = SnapModel.fromJson(data);
-    print(snap.title);
     return await _snapApiBox.put(snap.snapId, snap);
   }
 
   @override
   Future init() async {
     Hive.registerAdapter(SnapModelAdapter());
+    Hive.registerAdapter(AliasesAdapter());
     var docs = await getApplicationDocumentsDirectory();
     Hive.init(docs.path);
     _snapApiBox = await Hive.openBox(_nameBox);
@@ -50,7 +50,8 @@ class SnapLocalRepository implements IPackagesLocal {
   @override
   List<dynamic> search(String name) => _snapApiBox.values
       .where(
-        (snap) => snap.packageName.startsWith("$name"),
+        (value) =>
+            value.packageName?.toLowerCase()?.startsWith(name?.toLowerCase()),
       )
       .toList();
 
@@ -61,9 +62,9 @@ class SnapLocalRepository implements IPackagesLocal {
     final dataString = data.toString();
     data = jsonDecode(dataString);
 
-    final List<dynamic> snaps = data['_embedded']['clickindex:package'];
+    final List<dynamic> apps = data['_embedded']['clickindex:package'];
 
-    snaps.forEach((element) {
+    apps.forEach((element) {
       toSave(element);
     });
     return true;

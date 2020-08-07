@@ -41,9 +41,7 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                     ),
                   ],
                 ),
-                child:
-
-                    TextField(
+                child:TextField(
                       textAlign: TextAlign.center,
                       onChanged: controller.searchApp,
                       onSubmitted:controller.searchApp,
@@ -53,7 +51,11 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                     ),
               ),
               SizedBox(
-                height: 10,
+                height: 5,
+              ),
+              Observer(builder: (_)=>Text("${controller.apps.length}")),
+              SizedBox(
+                height: 5,
               ),
               Expanded(
                 child: Observer(

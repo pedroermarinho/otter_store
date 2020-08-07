@@ -10,9 +10,6 @@ import 'package:otter_store/app/modules/store/store_module.dart';
 import 'package:otter_store/app/pages/about/about_page.dart';
 
 import 'home_controller.dart';
-import 'pages/container3/container3_page.dart';
-import 'pages/container4/container4_page.dart';
-import 'pages/container5/container5_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;

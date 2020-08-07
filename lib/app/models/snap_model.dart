@@ -4,7 +4,7 @@ part 'snap_model.g.dart';
 
 @HiveType(typeId : 1)
 class SnapModel {
-//  List<Aliases> aliases;
+  List<Aliases> aliases;
   @HiveField(0)
   String anonDownloadUrl;
   @HiveField(1)
@@ -85,7 +85,7 @@ class SnapModel {
   String website;
 
   SnapModel({
-//    this.aliases,
+    this.aliases,
     this.anonDownloadUrl,
     this.apps,
     this.architecture,
@@ -128,12 +128,12 @@ class SnapModel {
   });
 
   SnapModel.fromJson(Map<String, dynamic> json) {
-//    if (json['aliases'] != null) {
-//      aliases = new List<Aliases>();
-//      json['aliases'].forEach((v) {
-//        aliases.add(new Aliases.fromJson(v));
-//      });
-//    }
+    if (json['aliases'] != null) {
+      aliases = new List<Aliases>();
+      json['aliases'].forEach((v) {
+        aliases.add(new Aliases.fromJson(v));
+      });
+    }
     anonDownloadUrl = json['anon_download_url'];
     apps = json['apps'].cast<String>();
     architecture = json['architecture'].cast<String>();
@@ -193,9 +193,9 @@ class SnapModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-//    if (this.aliases != null) {
-//      data['aliases'] = this.aliases.map((v) => v.toJson()).toList();
-//    }
+    if (this.aliases != null) {
+      data['aliases'] = this.aliases.map((v) => v.toJson()).toList();
+    }
     data['anon_download_url'] = this.anonDownloadUrl;
     data['apps'] = this.apps;
     data['architecture'] = this.architecture;
@@ -247,25 +247,27 @@ class SnapModel {
     return data;
   }
 }
+@HiveType(typeId : 2)
+class Aliases {
+  @HiveField(0)
+  String name;
+  @HiveField(1)
+  String target;
 
-//class Aliases {
-//  String name;
-//  String target;
-//
-//  Aliases({this.name, this.target});
-//
-//  Aliases.fromJson(Map<String, dynamic> json) {
-//    name = json['name'];
-//    target = json['target'];
-//  }
-//
-//  Map<String, dynamic> toJson() {
-//    final Map<String, dynamic> data = new Map<String, dynamic>();
-//    data['name'] = this.name;
-//    data['target'] = this.target;
-//    return data;
-//  }
-//}
+  Aliases({this.name, this.target});
+
+  Aliases.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+    target = json['target'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
+    data['target'] = this.target;
+    return data;
+  }
+}
 //
 //class Prices {
 //

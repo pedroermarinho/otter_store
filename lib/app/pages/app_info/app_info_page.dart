@@ -64,18 +64,24 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                 child: Row(
                   children: [
                     Observer(
-                      builder: (_) => ExtendedImage.network(
-                        controller.iconUrl,
-                        height: 100,
-                        width: 100,
-                        cache: true,
-                        loadStateChanged: (ExtendedImageState state) {
-                          switch (state.extendedImageLoadState) {
-                            case LoadState.completed:
-                              return ExtendedRawImage(
-                                image: state.extendedImageInfo?.image,
-                              );
-                              break;
+                      builder: (_) => controller.iconUrl == null
+                          ? Image.asset(
+                              Assets.icon,
+                              height: 100,
+                              width: 100,
+                            )
+                          : ExtendedImage.network(
+                              controller.iconUrl,
+                              height: 100,
+                              width: 100,
+                              cache: true,
+                              loadStateChanged: (ExtendedImageState state) {
+                                switch (state.extendedImageLoadState) {
+                                  case LoadState.completed:
+                                    return ExtendedRawImage(
+                                      image: state.extendedImageInfo?.image,
+                                    );
+                                    break;
                             default:
                               return Image.asset(Assets.icon);
                               break;

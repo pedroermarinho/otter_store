@@ -20,8 +20,8 @@ abstract class _HomeControllerBase with Store implements Disposable {
 //    _snapLocalController.recovery();
      _snapLocalController.getAll().forEach((element) {
        if(element!=null){
-         print(element.title);
-         print("");
+//         print(element.title);
+//         print("");
        }
      });
   }
