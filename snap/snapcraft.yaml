@@ -6,7 +6,6 @@ description: App store
 confinement: strict
 base: core18
 grade: stable
-icon: otter_store.png
 
 apps:
   otter-store:

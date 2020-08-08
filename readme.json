@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Loja de aplicativos",
   "icon_src": "assets/Octocat.png",
-  "snap_store_name": null,
+  "snap_store_name": "otter-store",
   "screenshot_src": ["screenshot/Screenshot1.png","screenshot/Screenshot2.png","screenshot/Screenshot3.png","screenshot/Screenshot4.png","screenshot/Screenshot5.png","screenshot/Screenshot6.png","screenshot/Screenshot7.png","screenshot/Screenshot8.png"],
   "author": "Pedro Marinho",
   "github_username": "pedroermarinho",
@@ -18,9 +18,9 @@
   "license_url": "https://github.com/pedroermarinho/otter_store/blob/master/LICENSE",
   "issues_url": "https://github.com/pedroermarinho/otter_store/issues",
   "license": "MIT",
-  "install_command": ["flutter run -d linux"],
-  "usage_command": null,
-  "test_command": null,
+  "install_command": ["sudo snap install otter-store"],
+  "usage_command": ["otter-store"],
+  "test_command": ["flutter run -d linux"],
 
   "repository": {
     "type": "git",
@@ -33,5 +33,5 @@
 
   "is_github_repos": true,
   "has_start_command": true,
-  "has_test_command": false
+  "has_test_command": true
 }

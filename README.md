@@ -1,7 +1,7 @@
 <h1 align="center">
 <img src="assets/Octocat.png" height="200" width="200"><br/>
 Welcome to Otter Store 👋
-
+<a href="https://snapcraft.io/otter-store"> <br/> <img src="https://github.com/snapcore/snap-store-badges/raw/master/PT/%5BPT%5D-snap-store-black-uneditable%401x.png"></a>
 </h1>
 <p>
 <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-blue.svg?cacheSeconds=2592000" />
@@ -16,11 +16,21 @@ Welcome to Otter Store 👋
 ### ✨ [Demo](https://github.com/pedroermarinho/otter_store#readme)
 ## Install
 ```sh
-flutter run -d linux
+sudo snap install otter-store
 
 ```
 
+## Usage
+```sh
+otter-store
 
+```
+
+## Run tests
+```sh
+flutter run -d linux
+
+```
 
 ## Author
 👤 **Pedro Marinho**
