@@ -35,7 +35,7 @@ class FlatpakDetailsModelAdapter extends TypeAdapter<FlatpakDetailsModel> {
       currentReleaseDate: fields[15] as String,
       currentReleaseDescription: fields[16] as String,
       inStoreSinceDate: fields[17] as String,
-      rating: fields[18] as int,
+      rating: fields[18] as double,
       ratingVotes: fields[19] as int,
       categories: (fields[20] as List)?.cast<Categories>(),
       screenshots: (fields[21] as List)?.cast<Screenshots>(),

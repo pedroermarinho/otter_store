@@ -1,8 +1,6 @@
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:otter_store/app/components/application_icon/application_icon_controller.dart';
-import 'package:otter_store/app/pages/app_info/app_info_page.dart';
 import 'package:otter_store/app/shared/config/assets.dart';
 import 'package:otter_store/app/shared/utils/packages.dart';
 
@@ -12,6 +10,7 @@ class ApplicationIconWidget extends StatelessWidget {
   final String urlImg;
   final String id;
   final TypePackages typePackages;
+  final Function onTap;
 
   ApplicationIconWidget({
     Key key,
@@ -19,6 +18,7 @@ class ApplicationIconWidget extends StatelessWidget {
     this.urlImg,
     @required this.id,
     @required this.typePackages,
+    @required this.onTap,
   }) : super(key: key);
 
   @override
@@ -26,28 +26,18 @@ class ApplicationIconWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(5),
       child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => AppInfoPage(
-                id: id,
-                typePackages: typePackages,
-              ),
-            ),
-          );
-        },
+        onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(5),
-          decoration: BoxDecoration(
-            color: Theme.of(context).backgroundColor,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 2.0,
-              ),
-            ],
-          ),
-          child: Stack(
+            padding: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              color: Theme.of(context).backgroundColor,
+              boxShadow: [
+                BoxShadow(
+                  blurRadius: 2.0,
+                ),
+              ],
+            ),
+            child: Stack(
               children: [
                 Column(
                   children: [
@@ -79,11 +69,13 @@ class ApplicationIconWidget extends StatelessWidget {
                   ],
                 ),
                 Positioned(
-                  child: Image.asset(
-                    getTypePackagesIcon(typePackages),
-                    width: 50,
-                    height: 50,
-                  ),
+                    child: FractionallySizedBox(
+                      heightFactor: 0.25,
+                      child: Image.asset(
+                        getTypePackagesIcon(typePackages),
+//                    height: 50,
+                      ),
+                    )
                 ),
               ],
           )

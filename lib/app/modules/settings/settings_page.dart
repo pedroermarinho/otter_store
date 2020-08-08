@@ -22,8 +22,6 @@ class _SettingsPageState
   Widget build(BuildContext context) {
     return Container(
       height: 40,
-      decoration: BoxDecoration(
-          color: Colors.black54, borderRadius: BorderRadius.circular(30)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -33,7 +31,7 @@ class _SettingsPageState
                 controller.isThemeDark
                     ? FontAwesomeIcons.solidSun
                     : FontAwesomeIcons.solidMoon,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
               onPressed: controller.changeTheme,
             ),
@@ -48,7 +46,9 @@ class _SettingsPageState
           IconButton(
             icon: Icon(
               FontAwesomeIcons.infoCircle,
-              color: Colors.white,
+              color: Theme
+                  .of(context)
+                  .accentColor,
             ),
             onPressed: controller.openAbout,
           ),

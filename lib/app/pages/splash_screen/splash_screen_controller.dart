@@ -20,20 +20,30 @@ abstract class _SplashScreenControllerBase with Store {
   @action
   recovery() async {
     load = true;
-    if (_snapLocalController.length() == 0)
-      await _snapLocalController.recovery();
+    try {
+      if (_snapLocalController.length() == 0)
+        await _snapLocalController.recovery();
+    } catch (e) {
+      print("Erro de conexão");
+    }
 
-    if (_appImageLocalController.length() == 0)
-      await _appImageLocalController.recovery();
-
-    if (_flatpakLocalController.length() == 0)
-      await _flatpakLocalController.recovery();
-
+    try {
+      if (_appImageLocalController.length() == 0)
+        await _appImageLocalController.recovery();
+    } catch (e) {
+      print("Erro de conexão");
+    }
+    try {
+      if (_flatpakLocalController.length() == 0)
+        await _flatpakLocalController.recovery();
+    } catch (e) {
+      print("Erro de conexão");
+    }
     load = false;
     pushHome();
   }
 
   pushHome() {
-    Modular.to.pushNamed("/home");
+    Modular.to.pushReplacementNamed("/home");
   }
 }

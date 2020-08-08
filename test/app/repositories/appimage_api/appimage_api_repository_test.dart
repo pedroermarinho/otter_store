@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dio/dio.dart';
 
-import 'package:otter_store/app/repositories/appimage_api/interfaces/appimage_api_repository_interface.dart';
+//import 'package:otter_store/app/repositories/appimage_api/interfaces/appimage_api_repository_interface.dart';
 
 class MockClient extends Mock implements Dio {}
 
 void main() {
-  IAppimageApiRepository repository;
+//  IAppimageApiRepository repository;
   // MockClient client;
 
   setUp(() {

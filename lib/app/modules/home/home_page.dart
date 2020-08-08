@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:otter_store/app/components/responsive/responsive_widget.dart';
-import 'package:otter_store/app/modules/settings/settings_module.dart';
 import 'package:otter_store/app/modules/store/store_module.dart';
 
 import 'home_controller.dart';
@@ -25,22 +24,39 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveWidget(
-      pequenoScreen: Scaffold(
-        body:Stack(
-          children: [
-            StoreModule(),
-            Observer(builder: (_) => controller.about),
-            Positioned(
-              top: 20,
-              right: 20,
-              child: SettingsModule(),
-            ),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: ResponsiveWidget(
+//      grandeScreen: Scaffold(
+//        body:Stack(
+//          children: [
+//            StoreModule(),
+//            Observer(builder: (_) => controller.about),
+//            Positioned(
+//              top: 40,
+//              right: 40,
+//              child: SettingsModule(),
+//            ),
+//          ],
+//        ),
+//      ),
+          pequenoScreen: Stack(
+            children: [
+              Column(
+                children: [
+                  Observer(
+                      builder: (_) =>
+                          controller.config ?? controller.container),
+                  Expanded(
+                    child: StoreModule(),
+                  ),
+                ],
+              ),
+              Observer(builder: (_) => controller.about),
+            ],
+          ),
         ),
-
       ),
     );
-
   }
 }

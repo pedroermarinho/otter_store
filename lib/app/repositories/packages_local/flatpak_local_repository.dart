@@ -1,13 +1,14 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 import 'package:otter_store/app/models/flatpak_model.dart';
 import 'package:otter_store/app/repositories/flatpak_api/flatpak_api_repository.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'interfaces/packages_local_interface.dart';
 
 class FlatpakLocalRepository implements IPackagesLocal{
-  
+
   final _flatpakApiRepository = Modular.get<FlatpakApiRepository>();
   static Box _flatpakApiBox;
   static const String _nameBox = 'flatpak_box';
@@ -39,7 +40,7 @@ class FlatpakLocalRepository implements IPackagesLocal{
   Future init() async {
     Hive.registerAdapter(FlatpakModelAdapter());
     if(!kIsWeb){
-      var docs = await getApplicationDocumentsDirectory();
+      var docs = await getApplicationSupportDirectory();
       Hive.init(docs.path);
     }
     _flatpakApiBox = await Hive.openBox(_nameBox);
@@ -51,10 +52,6 @@ class FlatpakLocalRepository implements IPackagesLocal{
   @override
   Future<bool> recovery() async {
     var apps = await _flatpakApiRepository.fetchPost();
-    print(apps);
-
-//    final List apps = data["items"];
-
     apps.forEach((element) {
       toSave(element);
     });

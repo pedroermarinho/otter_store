@@ -14,7 +14,7 @@ abstract class IPackagesLocal extends Disposable{
 
   List<dynamic> search(String name);
 
-  Future<bool> recovery();
+  Future recovery();
 
   int length();
 }

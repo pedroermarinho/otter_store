@@ -26,7 +26,6 @@ abstract class _ThemesControllerBase with Store {
 
   getTheme() async {
     _preferencesRepositoryController.getTheme().then((value) {
-      print(value);
       if (value != null) {
         theme = value;
       }

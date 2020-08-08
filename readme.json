@@ -1,0 +1,37 @@
+{
+  "project_name": "Otter Store",
+  "version": "0.1.1",
+  "description": "Loja de aplicativos",
+  "icon_src": "assets/Octocat.png",
+  "snap_store_name": null,
+  "screenshot_src": ["screenshot/Screenshot1.png","screenshot/Screenshot2.png","screenshot/Screenshot3.png","screenshot/Screenshot4.png","screenshot/Screenshot5.png","screenshot/Screenshot6.png","screenshot/Screenshot7.png","screenshot/Screenshot8.png"],
+  "author": "Pedro Marinho",
+  "github_username": "pedroermarinho",
+  "author_linkedin_username": "pedroermarinho",
+  "author_twitter_username": "pedroermarinho",
+  "author_website": "https://pedroermarinho.github.io/",
+  "homepage": "https://github.com/pedroermarinho/otter_store#readme",
+  "project_demo_url": "https://github.com/pedroermarinho/otter_store#readme",
+  "repository_url": "https://github.com/pedroermarinho/otter_store",
+  "contributing_url": "https://github.com/pedroermarinho/otter_store/blob/master/CONTRIBUTING.md",
+  "documentation_url": "https://github.com/pedroermarinho/otter_store#readme",
+  "license_url": "https://github.com/pedroermarinho/otter_store/blob/master/LICENSE",
+  "issues_url": "https://github.com/pedroermarinho/otter_store/issues",
+  "license": "MIT",
+  "install_command": ["flutter run -d linux"],
+  "usage_command": null,
+  "test_command": null,
+
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pedroermarinho/otter_store.git"
+  },
+  "credits": null,
+  "keywords": [
+  
+  ],
+
+  "is_github_repos": true,
+  "has_start_command": true,
+  "has_test_command": false
+}

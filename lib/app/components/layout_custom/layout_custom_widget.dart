@@ -13,7 +13,9 @@ class LayoutCustomWidget extends StatelessWidget {
     return Scaffold(
       appBar: appBar,
       body: Padding(
-        padding: EdgeInsets.all(6),
+        padding: ResponsiveWidget.isPequenoScreen(context)
+            ? EdgeInsets.only(left: 6, right: 6, bottom: 6)
+            : EdgeInsets.all(6),
         child: Container(
           decoration: ResponsiveWidget.isPequenoScreen(context)
               ? null

@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
@@ -43,7 +44,7 @@ class SnapLocalRepository implements IPackagesLocal {
     Hive.registerAdapter(SnapModelAdapter());
     Hive.registerAdapter(AliasesAdapter());
     if(!kIsWeb){
-      var docs = await getApplicationDocumentsDirectory();
+      var docs = await getApplicationSupportDirectory();
       Hive.init(docs.path);
     }
     _snapApiBox = await Hive.openBox(_nameBox);

@@ -9,6 +9,22 @@ part of 'app_info_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AppInfoController on _AppInfoControllerBase, Store {
+  final _$flatpakDetailsModelAtom =
+      Atom(name: '_AppInfoControllerBase.flatpakDetailsModel');
+
+  @override
+  FlatpakDetailsModel get flatpakDetailsModel {
+    _$flatpakDetailsModelAtom.reportRead();
+    return super.flatpakDetailsModel;
+  }
+
+  @override
+  set flatpakDetailsModel(FlatpakDetailsModel value) {
+    _$flatpakDetailsModelAtom.reportWrite(value, super.flatpakDetailsModel, () {
+      super.flatpakDetailsModel = value;
+    });
+  }
+
   final _$iconUrlAtom = Atom(name: '_AppInfoControllerBase.iconUrl');
 
   @override
@@ -55,24 +71,34 @@ mixin _$AppInfoController on _AppInfoControllerBase, Store {
   }
 
   final _$screenshotUrlsAtom =
-      Atom(name: '_AppInfoControllerBase.screenshotUrls');
+  Atom(name: '_AppInfoControllerBase.screenshotUrls');
 
   @override
-  List<String> get screenshotUrls {
+  ObservableList<String> get screenshotUrls {
     _$screenshotUrlsAtom.reportRead();
     return super.screenshotUrls;
   }
 
   @override
-  set screenshotUrls(List<String> value) {
+  set screenshotUrls(ObservableList<String> value) {
     _$screenshotUrlsAtom.reportWrite(value, super.screenshotUrls, () {
       super.screenshotUrls = value;
     });
   }
 
+  final _$_recoveryFlatpakDetailsAsyncAction =
+  AsyncAction('_AppInfoControllerBase._recoveryFlatpakDetails');
+
+  @override
+  Future _recoveryFlatpakDetails(String key) {
+    return _$_recoveryFlatpakDetailsAsyncAction
+        .run(() => super._recoveryFlatpakDetails(key));
+  }
+
   @override
   String toString() {
     return '''
+flatpakDetailsModel: ${flatpakDetailsModel},
 iconUrl: ${iconUrl},
 description: ${description},
 name: ${name},

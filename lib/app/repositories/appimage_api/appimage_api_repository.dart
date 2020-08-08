@@ -1,5 +1,6 @@
 import 'package:dio/native_imp.dart';
 import 'package:otter_store/app/shared/config/constants.dart';
+
 import 'interfaces/appimage_api_repository_interface.dart';
 
 class AppimageApiRepository implements IAppimageApiRepository {
@@ -8,8 +9,7 @@ class AppimageApiRepository implements IAppimageApiRepository {
   AppimageApiRepository(this.client);
 
   Future fetchPost() async {
-    final response =
-        await client.get(Constants.API_APPIMAGE);
+    final response = await client.get(Constants.API_APPIMAGE);
     return response.data;
   }
 

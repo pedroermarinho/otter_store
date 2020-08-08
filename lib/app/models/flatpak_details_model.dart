@@ -60,7 +60,7 @@ class FlatpakDetailsModel {
   String inStoreSinceDate;
 
   @HiveField(18)
-  int rating;
+  double rating;
 
   @HiveField(19)
   int ratingVotes;

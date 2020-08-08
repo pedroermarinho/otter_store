@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
-import 'package:otter_store/app/shared/utils/packages.dart';
 
 part 'application_icon_controller.g.dart';
 

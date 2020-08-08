@@ -1,9 +1,10 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hive/hive.dart';
 import 'package:otter_store/app/models/appimage_model.dart';
 import 'package:otter_store/app/repositories/appimage_api/appimage_api_repository.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'interfaces/packages_local_interface.dart';
 
 class AppimageLocalRepository implements IPackagesLocal {
@@ -40,7 +41,7 @@ class AppimageLocalRepository implements IPackagesLocal {
     Hive.registerAdapter(AuthorsAdapter());
     Hive.registerAdapter(LinksAdapter());
     if(!kIsWeb){
-      var docs = await getApplicationDocumentsDirectory();
+      var docs = await getApplicationSupportDirectory();
       Hive.init(docs.path);
     }
     _appImageApiBox = await Hive.openBox(_nameBox);
@@ -73,8 +74,8 @@ class AppimageLocalRepository implements IPackagesLocal {
       final key = appImage.links
           .firstWhere(
             (element) => element.type == "GitHub",
-            orElse: () => null,
-          )
+        orElse: () => null,
+      )
           ?.url;
       if (key != null) await _appImageApiBox.put(key, appImage);
     }
