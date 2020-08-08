@@ -9,7 +9,7 @@ grade: stable
 
 apps:
   otter-store:
-    command: otter_store
+    command: desktop-launch otter_store
     extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
     plugs:
     - network
