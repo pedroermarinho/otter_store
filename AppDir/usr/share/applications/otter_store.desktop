@@ -1,8 +1,9 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
+Terminal=false
 Name=Otter Store
 Comment=Lojas de Aplicativos
 Exec=otter_store.sh
 Icon=otter_store
-Categories=Audio;Music;
+Categories=Utility;

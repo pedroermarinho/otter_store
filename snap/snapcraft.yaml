@@ -1,21 +1,22 @@
 name: otter-store
-version: 0.1.0
+version: 1.1.0
 summary: Otter Store
 description: App store
 
 confinement: strict
 base: core18
 grade: stable
+icon: otter_store.png
 
 apps:
   otter-store:
     command: otter_store
-    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
+    extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
     plugs:
     - network
 
 parts:
   otter-store:
-    source: .
+    source: https://github.com/pedroermarinho/otter_store.git
     plugin: flutter
     flutter-target: lib/main.dart # The main entry-point file of the application 
