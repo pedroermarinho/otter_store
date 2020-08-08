@@ -13,6 +13,8 @@ apps:
     extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
     plugs:
     - network
+    - desktop
+    - home
 
 parts:
   otter-store:
