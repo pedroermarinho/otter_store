@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
     return Observer(
       builder: (_) => MaterialApp(
         navigatorKey: Modular.navigatorKey,
-        title: 'Pedro Marinho',
+        title: 'Otter Store',
         theme: themes.themeActual,
         initialRoute: '/',
         onGenerateRoute: Modular.generateRoute,
