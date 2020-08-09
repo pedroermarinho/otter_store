@@ -6,6 +6,7 @@ description: App store
 confinement: strict
 base: core18
 grade: stable
+icon: snap/gui/otter-store.png
 
 apps:
   otter-store:
