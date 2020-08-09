@@ -107,7 +107,7 @@ abstract class _StoreControllerBase with Store {
               urlImg: urlIcon,
               typePackages: TypePackages.appImage,
               onTap: () {
-                openInfo(id: element.key, typePackages: TypePackages.appImage);
+                openInfo(id: key, typePackages: TypePackages.appImage);
               },
             ),
           );

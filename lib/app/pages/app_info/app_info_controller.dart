@@ -41,6 +41,25 @@ abstract class _AppInfoControllerBase with Store {
   @observable
   ObservableList<String> screenshotUrls = ObservableList();
 
+  @observable
+  String developerName;
+
+  @observable
+  String projectLicense;
+
+  @observable
+  String homepageUrl;
+
+  @observable
+  String version;
+
+  @observable
+  String categories;
+
+
+  @observable
+  String font;
+
   closeInfo() => _storeController.closeInfo();
 
   setApp(String key, TypePackages type) {
@@ -64,6 +83,12 @@ abstract class _AppInfoControllerBase with Store {
       name = snapModel.title;
       description = snapModel.description;
       screenshotUrls = snapModel.screenshotUrls.asObservable();
+      developerName = snapModel.developerName;
+      projectLicense = snapModel.license;
+      homepageUrl = snapModel.website;
+      version = snapModel.version;
+      categories = null;
+      font = "Snap";
     }
   }
 
@@ -77,6 +102,12 @@ abstract class _AppInfoControllerBase with Store {
       flatpakDetailsModel.screenshots.forEach((Screenshots element) {
         screenshotUrls.add(element.imgDesktopUrl);
       });
+      developerName = flatpakDetailsModel.developerName;
+      projectLicense = flatpakDetailsModel.projectLicense;
+      homepageUrl = flatpakDetailsModel.homepageUrl;
+      version = flatpakDetailsModel.currentReleaseVersion;
+      categories = flatpakDetailsModel.categories[0]?.name;
+      font = "Flatpak";
     }
   }
 
@@ -88,9 +119,20 @@ abstract class _AppInfoControllerBase with Store {
       }
       name = appImageModel.name;
       description = appImageModel.description;
-      appImageModel.screenshots.forEach((element) {
+      appImageModel.screenshots?.forEach((element) {
         screenshotUrls.add(Constants.RAW_APPIMAGE + element);
       });
+      developerName = appImageModel.authors[0]?.name;
+      projectLicense = appImageModel.license;
+      final project = appImageModel.links.firstWhere(
+              (element) => element.type == "GitHub",
+          orElse: () =>
+          null
+      );
+      homepageUrl = project ==null?null:"https://github.com/"+project.url;
+      version = null;
+      categories = appImageModel.categories[0];
+      font = "AppImage";
     }
   }
 }

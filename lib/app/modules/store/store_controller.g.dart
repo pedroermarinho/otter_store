@@ -63,7 +63,7 @@ mixin _$StoreController on _StoreControllerBase, Store {
   }
 
   final _$_StoreControllerBaseActionController =
-  ActionController(name: '_StoreControllerBase');
+      ActionController(name: '_StoreControllerBase');
 
   @override
   void openInfo({@required String id, @required TypePackages typePackages}) {

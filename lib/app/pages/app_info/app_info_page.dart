@@ -173,68 +173,182 @@ class _AppInfoPageState extends ModularState<AppInfoPage, AppInfoController> {
                                       cache: true,
                                       loadStateChanged:
                                           (ExtendedImageState state) {
-                                        switch (state.extendedImageLoadState) {
-                                          case LoadState.completed:
-                                            return ExtendedRawImage(
-                                              image: state
-                                                  .extendedImageInfo?.image,
-                                            );
-                                            break;
-                                          default:
-                                            return Image.asset(Assets.icon);
-                                            break;
-                                        }
-                                      },
+                                        switch (
+                                              state.extendedImageLoadState) {
+                                            case LoadState.completed:
+                                              return ExtendedRawImage(
+                                                image: state
+                                                    .extendedImageInfo?.image,
+                                              );
+                                              break;
+                                            case LoadState.loading:
+                                              return Image.asset(Assets.icon);
+                                              break;
+                                            case LoadState.failed:
+                                              return Image.asset(Assets.icon);
+                                              break;
+                                            default:
+                                              return Image.asset(Assets.icon);
+                                              break;
+                                          }
+                                        },
+                                      ),
                                     ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: ResponsiveWidget.isPequenoScreen(
+                                        context)
+                                    ? null
+                                    : BoxDecoration(
+                                        color:
+                                            Theme.of(context).backgroundColor,
+                                        borderRadius: BorderRadius.circular(5),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 1.0,
+                                          ),
+                                        ],
+                                      ),
+                                child: Observer(
+
+                                  builder: (_) => HtmlWidget(
+                                    controller.description,
+                                    onTapUrl: (url) => showDialog(
+                                      context: context,
+                                      builder: (_) => Text(
+                                        url ?? "",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
+                                      ),
+                                    ),
+                                    textStyle:
+                                        Theme.of(context).textTheme.bodyText1,
                                   ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Container(
-                              padding: EdgeInsets.all(5),
-                              decoration: ResponsiveWidget.isPequenoScreen(
-                                      context)
-                                  ? null
-                                  : BoxDecoration(
-                                      color: Theme.of(context).backgroundColor,
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 1.0,
-                                        ),
-                                      ],
-                                    ),
-                              child: Observer(
-                                builder: (_) =>
-                                    widget.typePackages == TypePackages.flatpak
-                                        ? HtmlWidget(
-                                            controller.description,
-                                            onTapUrl: (url) => showDialog(
-                                              context: context,
-                                              builder: (_) => Text(
-                                                url ?? "",
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10),
+                              child: Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: ResponsiveWidget.isPequenoScreen(
+                                        context)
+                                    ? null
+                                    : BoxDecoration(
+                                        color:
+                                            Theme.of(context).backgroundColor,
+                                        borderRadius: BorderRadius.circular(5),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 1.0,
+                                          ),
+                                        ],
+                                      ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Observer(
+                                      builder: (_) => controller.categories ==
+                                              null
+                                          ? Container()
+                                          : Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              child: Text(
+                                                "Categoria: ${controller.categories}",
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .bodyText1,
                                               ),
                                             ),
-                                            textStyle: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          )
-                                        : Text(
-                                            controller.description ?? "",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .bodyText1,
-                                          ),
+                                    ),
+                                    Observer(
+                                      builder: (_) => controller.version == null
+                                          ? Container()
+                                          : Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              child: Text(
+                                                "Versão: ${controller.version}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              ),
+                                            ),
+                                    ),
+                                    Observer(
+                                      builder: (_) =>
+                                          controller.developerName == null
+                                              ? Container()
+                                              : Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 5),
+                                                  child: Text(
+                                                    "Autor: ${controller.developerName}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                    ),
+                                    Observer(
+                                      builder: (_) => controller.font == null
+                                          ? Container()
+                                          : Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 5),
+                                              child: Text(
+                                                "Fonte: ${controller.font}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              ),
+                                            ),
+                                    ),
+                                    Observer(
+                                      builder: (_) =>
+                                          controller.projectLicense == null
+                                              ? Container()
+                                              : Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 5),
+                                                  child: Text(
+                                                    "Licença: ${controller.projectLicense}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText1,
+                                                  ),
+                                                ),
+                                    ),
+                                    Observer(
+                                      builder: (_) => controller.homepageUrl ==
+                                              null
+                                          ? Container()
+                                          : Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 0),
+                                              child: Text(
+                                                "Site: ${controller.homepageUrl}",
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyText1,
+                                              ),
+                                            ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-            )),
+              ),
+            ),
           ],
         ),
       ),
