@@ -1,3 +1,5 @@
+import 'services/snap_service.dart';
+import 'services/interfaces/packages_service_interface.dart';
 import 'repositories/flatpak_details_api/flatpak_details_api_repository.dart';
 import 'repositories/flatpak_details_api/interfaces/flatpak_details_api_repository_interface.dart';
 import 'repositories/packages_local/flatpak_details_local_repository.dart';
@@ -28,6 +30,7 @@ import 'repositories/snap_api/snap_api_repository.dart';
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        Bind<IPackagesService>((i) => SnapService(), lazy: false),
         Bind<IFlatpakDetailsApiRepository>(
             (i) => FlatpakDetailsApiRepository(Dio())),
         Bind((i) => FlatpakApiRepository(Dio())),
@@ -35,7 +38,7 @@ class AppModule extends MainModule {
         Bind((i) => ApplicationIconController()),
         Bind((i) => AppInfoController()),
         Bind((i) => SnapApiRepository(Dio())),
-    Bind((i) => FlatpakDetailsLocalRepository(), lazy: false),
+        Bind((i) => FlatpakDetailsLocalRepository(), lazy: false),
         Bind((i) => FlatpakLocalRepository(), lazy: false),
         Bind((i) => SnapLocalRepository(), lazy: false),
         Bind((i) => AppimageLocalRepository(), lazy: false),

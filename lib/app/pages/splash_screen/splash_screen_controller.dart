@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:otter_store/app/repositories/packages_local/appimage_local_repository.dart';
 import 'package:otter_store/app/repositories/packages_local/flatpak_local_repository.dart';
 import 'package:otter_store/app/repositories/packages_local/snap_local_repository.dart';
+import 'package:otter_store/app/services/snap_service.dart';
 
 part 'splash_screen_controller.g.dart';
 
@@ -13,6 +14,7 @@ abstract class _SplashScreenControllerBase with Store {
   final _snapLocalController = Modular.get<SnapLocalRepository>();
   final _appImageLocalController = Modular.get<AppimageLocalRepository>();
   final _flatpakLocalController = Modular.get<FlatpakLocalRepository>();
+  final _snapService = Modular.get<SnapService>();
 
   @observable
   bool load = false;
@@ -36,6 +38,11 @@ abstract class _SplashScreenControllerBase with Store {
     try {
       if (_flatpakLocalController.length() == 0)
         await _flatpakLocalController.recovery();
+    } catch (e) {
+      print("Erro de conexão");
+    }
+    try {
+      _snapService.recoveryAppsInstalled();
     } catch (e) {
       print("Erro de conexão");
     }

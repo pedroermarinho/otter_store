@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  process_run: ^0.10.12+1
   font_awesome_flutter: ^8.8.1
   flutter_widget_from_html_core: ^0.4.3
   carousel_slider: ^2.2.1

@@ -27,19 +27,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     return Scaffold(
       body: SafeArea(
         child: ResponsiveWidget(
-//      grandeScreen: Scaffold(
-//        body:Stack(
-//          children: [
-//            StoreModule(),
-//            Observer(builder: (_) => controller.about),
-//            Positioned(
-//              top: 40,
-//              right: 40,
-//              child: SettingsModule(),
-//            ),
-//          ],
-//        ),
-//      ),
           pequenoScreen: Stack(
             children: [
               Column(
