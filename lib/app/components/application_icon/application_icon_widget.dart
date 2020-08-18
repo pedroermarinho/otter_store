@@ -5,12 +5,12 @@ import 'package:otter_store/app/shared/config/assets.dart';
 import 'package:otter_store/app/shared/utils/packages.dart';
 
 class ApplicationIconWidget extends StatelessWidget {
-
   final String name;
   final String urlImg;
   final String id;
   final TypePackages typePackages;
   final Function onTap;
+  final bool isInstalled;
 
   ApplicationIconWidget({
     Key key,
@@ -19,6 +19,7 @@ class ApplicationIconWidget extends StatelessWidget {
     @required this.id,
     @required this.typePackages,
     @required this.onTap,
+    this.isInstalled = false,
   }) : super(key: key);
 
   @override
@@ -28,57 +29,63 @@ class ApplicationIconWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-            padding: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              color: Theme.of(context).backgroundColor,
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 2.0,
-                ),
-              ],
-            ),
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: urlImg == null
-                          ? Image.asset(Assets.icon)
-                          : ExtendedImage.network(
-                              urlImg,
-                              cache: true,
-                              loadStateChanged: (ExtendedImageState state) {
-                                switch (state.extendedImageLoadState) {
-                                  case LoadState.completed:
-                                    return ExtendedRawImage(
-                                      image: state.extendedImageInfo?.image,
-                                    );
-                                    break;
-                                  default:
-                                    return Image.asset(Assets.icon);
-                                    break;
-                                }
-                              },
-                            ),
-                    ),
-                    Text(
-                      name ?? "Nome não encontrado",
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1,
-                    )
-                  ],
-                ),
-                Positioned(
-                    child: FractionallySizedBox(
-                      heightFactor: 0.25,
-                      child: Image.asset(
-                        getTypePackagesIcon(typePackages),
+          padding: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Theme.of(context).backgroundColor,
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 2.0,
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  Expanded(
+                    child: urlImg == null
+                        ? Image.asset(Assets.icon)
+                        : ExtendedImage.network(
+                            urlImg,
+                            cache: true,
+                            clearMemoryCacheWhenDispose: true,
+                            loadStateChanged: (ExtendedImageState state) {
+                              switch (state?.extendedImageLoadState) {
+                                case LoadState.completed:
+                                  return ExtendedRawImage(
+                                    image: state.extendedImageInfo?.image,
+                                  );
+                                  break;
+                                default:
+                                  return Image.asset(Assets.icon);
+                                  break;
+                              }
+                            },
+                          ),
+                  ),
+                  Text(
+                    name ?? "Nome não encontrado",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  )
+                ],
+              ),
+              Positioned(
+                child: FractionallySizedBox(
+                  heightFactor: 0.25,
+                  child: Image.asset(
+                    getTypePackagesIcon(typePackages),
 //                    height: 50,
-                      ),
-                    )
+                  ),
                 ),
-              ],
-          )
+              ),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: isInstalled ? Icon(Icons.check_circle) : Container(),
+              ),
+            ],
+          ),
         ),
       ),
     );

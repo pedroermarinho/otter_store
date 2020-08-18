@@ -36,19 +36,10 @@ class _SettingsPageState
               onPressed: controller.changeTheme,
             ),
           ),
-//          IconButton(
-//            icon: Icon(
-//              FontAwesomeIcons.github,
-//              color: Colors.white,
-//            ),
-//            onPressed: controller.openProjects,
-//          ),
           IconButton(
             icon: Icon(
               FontAwesomeIcons.infoCircle,
-              color: Theme
-                  .of(context)
-                  .accentColor,
+              color: Theme.of(context).accentColor,
             ),
             onPressed: controller.openAbout,
           ),

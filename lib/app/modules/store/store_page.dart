@@ -74,6 +74,8 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                   SizedBox(
                     height: 5,
                   ),
+
+                  /// construção das amostras do aplicativos na tela
                   Expanded(
                     child: Observer(
                       builder: (_) => DraggableScrollbar.semicircle(
@@ -84,6 +86,9 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount:
+
+                                /// se a tela for pequena mostra 2 colunas
+                                /// se a tela for grande mostra 4 colunas
                                 ResponsiveWidget.isPequenoScreen(context)
                                     ? 2
                                     : 4,
@@ -99,6 +104,8 @@ class _StorePageState extends ModularState<StorePage, StoreController> {
               ),
             ),
           ),
+
+          /// mostra tela de informações
           Observer(builder: (_) => controller.info ?? controller.container),
         ],
       ),
