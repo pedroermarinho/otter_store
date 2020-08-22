@@ -11,13 +11,12 @@ class SettingsModule extends WidgetModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => SettingsPage()),
+  List<ModularRouter> get routers => [
+    ModularRouter(Modular.initialRoute, child: (_, args) => SettingsPage()),
       ];
 
   static Inject get to => Inject<SettingsModule>.of();
 
   @override
-  // TODO: implement view
   Widget get view => SettingsPage();
 }

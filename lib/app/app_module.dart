@@ -52,9 +52,9 @@ class AppModule extends MainModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => SplashScreenPage()),
-        Router("/home", module: HomeModule()),
+  List<ModularRouter> get routers => [
+    ModularRouter(Modular.initialRoute, child: (_, args) => SplashScreenPage()),
+    ModularRouter("/home", module: HomeModule()),
       ];
 
   @override
