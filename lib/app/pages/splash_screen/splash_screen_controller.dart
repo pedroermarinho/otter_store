@@ -22,12 +22,12 @@ abstract class _SplashScreenControllerBase with Store {
   @action
   recovery() async {
     load = true;
-    try {
-      if (_snapLocalController.length() == 0)
+//    try {
+//      if (_snapLocalController.length() == 0)
         await _snapLocalController.recovery();
-    } catch (e) {
-      print("Erro de conexão");
-    }
+//    } catch (e) {
+//      print("Erro de conexão");
+//    }
 
     try {
       if (_appImageLocalController.length() == 0)
