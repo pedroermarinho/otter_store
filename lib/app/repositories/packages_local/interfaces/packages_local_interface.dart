@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-abstract class IPackagesLocal extends Disposable{
-
+abstract class IPackagesLocal extends Disposable {
   Future init();
 
   Future<void> toSave(Map data);
@@ -10,9 +9,9 @@ abstract class IPackagesLocal extends Disposable{
 
   dynamic get(String key);
 
-  Iterable<dynamic> getAll();
+  Iterable getAll();
 
-  List<dynamic> search(String name);
+  List search(String name);
 
   Future recovery();
 

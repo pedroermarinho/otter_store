@@ -7,6 +7,7 @@ import 'package:otter_store/app/modules/home/home_controller.dart';
 import 'package:otter_store/app/pages/app_info/app_info_page.dart';
 import 'package:otter_store/app/repositories/packages_local/appimage_local_repository.dart';
 import 'package:otter_store/app/repositories/packages_local/flatpak_local_repository.dart';
+import 'package:otter_store/app/repositories/packages_local/interfaces/packages_local_interface.dart';
 import 'package:otter_store/app/repositories/packages_local/snap_local_repository.dart';
 import 'package:otter_store/app/services/snap_service.dart';
 import 'package:otter_store/app/shared/config/constants.dart';
@@ -18,9 +19,11 @@ class StoreController = _StoreControllerBase with _$StoreController;
 
 abstract class _StoreControllerBase with Store {
   final _homeController = Modular.get<HomeController>();
-  final _snapLocalController = Modular.get<SnapLocalRepository>();
-  final _appImageLocalController = Modular.get<AppimageLocalRepository>();
-  final _flatpakLocalController = Modular.get<FlatpakLocalRepository>();
+  IPackagesLocal _snapLocalController = Modular.get<SnapLocalRepository>();
+  IPackagesLocal _appImageLocalController =
+      Modular.get<AppimageLocalRepository>();
+  IPackagesLocal _flatpakLocalController =
+      Modular.get<FlatpakLocalRepository>();
   final _snapService = Modular.get<SnapService>();
   final Widget container = Container();
 

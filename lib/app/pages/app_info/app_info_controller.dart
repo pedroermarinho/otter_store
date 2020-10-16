@@ -6,6 +6,7 @@ import 'package:otter_store/app/models/snap_model.dart';
 import 'package:otter_store/app/modules/store/store_controller.dart';
 import 'package:otter_store/app/repositories/packages_local/appimage_local_repository.dart';
 import 'package:otter_store/app/repositories/packages_local/flatpak_details_local_repository.dart';
+import 'package:otter_store/app/repositories/packages_local/interfaces/packages_local_interface.dart';
 import 'package:otter_store/app/repositories/packages_local/snap_local_repository.dart';
 import 'package:otter_store/app/shared/config/constants.dart';
 import 'package:otter_store/app/shared/utils/packages.dart';
@@ -15,9 +16,10 @@ part 'app_info_controller.g.dart';
 class AppInfoController = _AppInfoControllerBase with _$AppInfoController;
 
 abstract class _AppInfoControllerBase with Store {
-  final _snapLocalController = Modular.get<SnapLocalRepository>();
-  final _appImageLocalController = Modular.get<AppimageLocalRepository>();
-  final _flatpakDetailsLocalController =
+  IPackagesLocal _snapLocalController = Modular.get<SnapLocalRepository>();
+  IPackagesLocal _appImageLocalController =
+      Modular.get<AppimageLocalRepository>();
+  IPackagesLocal _flatpakDetailsLocalController =
       Modular.get<FlatpakDetailsLocalRepository>();
 
   final _storeController = Modular.get<StoreController>();
@@ -55,7 +57,6 @@ abstract class _AppInfoControllerBase with Store {
 
   @observable
   String categories;
-
 
   @observable
   String font;
@@ -125,11 +126,10 @@ abstract class _AppInfoControllerBase with Store {
       developerName = appImageModel.authors[0]?.name;
       projectLicense = appImageModel.license;
       final project = appImageModel.links.firstWhere(
-              (element) => element.type == "GitHub",
-          orElse: () =>
-          null
-      );
-      homepageUrl = project ==null?null:"https://github.com/"+project.url;
+          (element) => element.type == "GitHub",
+          orElse: () => null);
+      homepageUrl =
+          project == null ? null : "https://github.com/" + project.url;
       version = null;
       categories = appImageModel.categories[0];
       font = "AppImage";
