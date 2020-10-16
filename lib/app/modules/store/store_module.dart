@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' ;
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'store_controller.dart';
@@ -11,13 +11,12 @@ class StoreModule extends WidgetModule {
       ];
 
   @override
-  List<Router> get routers => [
-        Router(Modular.initialRoute, child: (_, args) => StorePage()),
+  List<ModularRouter> get routers => [
+    ModularRouter(Modular.initialRoute, child: (_, args) => StorePage()),
       ];
 
   static Inject get to => Inject<StoreModule>.of();
 
   @override
-  // TODO: implement view
-  Widget get view =>  StorePage();
+  Widget get view => StorePage();
 }

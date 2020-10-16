@@ -4,7 +4,7 @@ class Constants {
   static const PROFILE_TWITTER = 'https://twitter.com/pedroermarinho';
   static const RAW_GITHUB = 'https://raw.githubusercontent.com/pedroermarinho';
   static const API_GITHUB = 'https://api.github.com/users/pedroermarinho/repos';
-  static const API_SNAPCRAFT = 'https://search.apps.ubuntu.com/api/v1/search';
+  static const API_SNAPCRAFT = 'https://api.snapcraft.io/api/v1/snaps/search';
   static const API_FLATPAK = 'https://flathub.org/api/v1/apps/';
   static const FLATHUB = 'https://flathub.org';
   static const API_APPIMAGE = 'https://appimage.github.io/feed.json';

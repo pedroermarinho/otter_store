@@ -11,7 +11,7 @@ icon: snap/gui/otter-store.png
 apps:
   otter-store:
     command: desktop-launch otter_store
-    extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
+    extensions: [flutter-master]
     plugs:
     - network
     - desktop
@@ -21,4 +21,4 @@ parts:
   otter-store:
     source: https://github.com/pedroermarinho/otter_store.git
     plugin: flutter
-    flutter-target: lib/main.dart # The main entry-point file of the application 
+    flutter-target: lib/main.dart

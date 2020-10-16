@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:otter_store/app/models/snap_installed_model.dart';
 
 import 'package:otter_store/app/services/interfaces/packages_service_interface.dart';
 import 'package:otter_store/app/services/snap_service.dart';
