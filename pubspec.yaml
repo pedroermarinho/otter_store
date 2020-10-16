@@ -23,7 +23,7 @@ environment:
 dependencies:
   process_run: ^0.10.12+1
   font_awesome_flutter: ^8.8.1
-  flutter_widget_from_html_core: ^0.4.3
+  flutter_widget_from_html_core: ^0.5.1+2
   carousel_slider: ^2.2.1
   draggable_scrollbar: ^0.0.4
   extended_image: ^1.0.0

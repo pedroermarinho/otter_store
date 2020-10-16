@@ -67,8 +67,7 @@ abstract class _StoreControllerBase with Store {
               name: element.title,
               urlImg: element.iconUrl,
               typePackages: TypePackages.snap,
-              isInstalled:
-                  _snapService.isInstalled(element.packageName),
+              isInstalled: _snapService.isInstalled(element.packageName),
               onTap: () {
                 openInfo(id: element.snapId, typePackages: TypePackages.snap);
               },
@@ -82,7 +81,7 @@ abstract class _StoreControllerBase with Store {
             ApplicationIconWidget(
               id: element.flatpakAppId,
               name: element.name,
-              urlImg: Constants.FLATHUB + element.iconDesktopUrl,
+              urlImg: element.iconDesktopUrl,
               typePackages: TypePackages.flatpak,
               onTap: () {
                 openInfo(
@@ -134,7 +133,7 @@ abstract class _StoreControllerBase with Store {
             name: element.title,
             urlImg: element.iconUrl,
             typePackages: TypePackages.snap,
-            isInstalled: _snapService.isInstalled(element.packageName) ,
+            isInstalled: _snapService.isInstalled(element.packageName),
             onTap: () {
               openInfo(id: element.snapId, typePackages: TypePackages.snap);
             },
@@ -144,11 +143,12 @@ abstract class _StoreControllerBase with Store {
     );
     _flatpakLocalController.getAll().forEach(
       (element) {
+        print(Constants.FLATHUB + element.iconDesktopUrl.toString());
         apps.add(
           ApplicationIconWidget(
             id: element.flatpakAppId,
             name: element.name,
-            urlImg: Constants.FLATHUB + element.iconDesktopUrl,
+            urlImg: element.iconDesktopUrl,
             typePackages: TypePackages.flatpak,
             onTap: () {
               openInfo(
